@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+
+\title{COMP6231 : Reading Assignment 4}
+\author{Thanakorn Panyapiang(31446612)}
+\date{}
+
+\begin{document}
+\maketitle
+
+The paper uses a game of checkers to study two learning techniques: rote learning and learning by generalization. The author trains the machine to play a checker using two learning methods and observes the characteristics of each. In addition, he also proposes approaches to combine the strengths of both techniques together.\\
+
+\indent What I found interesting from the paper is the idea of \textit{ply} value. The \textit{ply} is the value used to limit the number of next moves that the machine will consider while playing a game which is equivalent to the depth of the tree which the machine will explore. The interesting feature of the ply is it is not static and will be calculated based on the situation of the game at that particular moment. In some aspects, the \textit{ply} limitation is similar to an evaluation function of heuristic search but it is an evaluation function for depth-level instead of a node of the tree. However, the purposes of the ply and evaluation function are quite different. While an evaluation function is designed specificly to help finding the target state, the goal of the \textit{ply} limitation is to reduce the computational time.
+
+\end{document}
