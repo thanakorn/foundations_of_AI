@@ -12,6 +12,7 @@ class BoardState:
         self.a_pos = a_pos_xy
         self.b_pos = b_pos_xy
         self.c_pos = c_pos_xy
+        self.board_size = board_size
 
     def move(self, action):
         # Calculate new agent position
@@ -21,7 +22,21 @@ class BoardState:
         else:
             new_pos[1] += action
         
-        return BoardState(agent_new_pos, a_pos, b_pos, c_pos)
+        # If the move is invalid return None
+        if(agent_new_pos[0] < 0 | agent_new_pos[0] > self.board_size | agent_new_pos[1] < 0 | agent_new_pos[1] > self.board_size[1]):
+            return None
+        
+        new_a_pos = self.a_pos
+        new_b_pos = self.b_pos
+        new_c_pos = self.c_pos
+        if(self.a_pos == agent_new_pos):
+            new_a_pos = self.agent_pos
+        elif(self.b_pos == agent_new_pos):
+            new_b_pos = self.agent_pos
+        elif(self.c_pos == agent_new_pos):
+            new_c_pos = self.agent_pos
+        
+        return BoardState(agent_new_pos, new_a_pos, new_b_pos, new_c_pos)
 
     def compare_to(self, s: BoardState) -> bool:
         return self.positions == s.positions
