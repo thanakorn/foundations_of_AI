@@ -1,10 +1,10 @@
 from enum import Enum
 
 class Action(Enum):
-    Right = 1
-    Left = -1
-    Up = 1
-    Down = -1
+    Left  = (-1, 0)
+    Right = (1, 0)
+    Up    = (0, -1)
+    Down  = (0, 1)
 
 class BoardState:
     def __init__(self, agent_pos_xy, a_pos_xy, b_pos_xy, c_pos_xy, board_size):
@@ -16,14 +16,11 @@ class BoardState:
 
     def move(self, action):
         # Calculate new agent position
-        agent_new_pos = agent_pos
-        if(action == Action.Right | action == Action.Left): 
-            agent_new_pos[0] += action
-        else:
-            new_pos[1] += action
-        
+        dx, dy = action.value
+        agent_new_pos = (self.agent_pos[0] + dx, self.agent_pos[1] + dy)
+
         # If the move is invalid return None
-        if(agent_new_pos[0] < 0 | agent_new_pos[0] > self.board_size | agent_new_pos[1] < 0 | agent_new_pos[1] > self.board_size[1]):
+        if(agent_new_pos[0] < 0 or agent_new_pos[0] == self.board_size[0] or agent_new_pos[1] < 0 or agent_new_pos[1] == self.board_size[1]):
             return None
         
         new_a_pos = self.a_pos
@@ -36,13 +33,22 @@ class BoardState:
         elif(self.c_pos == agent_new_pos):
             new_c_pos = self.agent_pos
         
-        return BoardState(agent_new_pos, new_a_pos, new_b_pos, new_c_pos)
+        return BoardState(agent_new_pos, new_a_pos, new_b_pos, new_c_pos, self.board_size)
 
-    def compare_to(self, s: BoardState) -> bool:
-        return self.positions == s.positions
+    def compare(self, s) -> bool:
+        return self.agent_pos == s.agent_pos and self.a_pos == s.a_pos and self.b_pos == s.b_pos and self.c_pos == s.c_pos and self.board_size == s.board_size
+
+    def show(self):
+        height, width = self.board_size
+        board = [['-' for i in range(width)] for j in range(height)]
+        board[self.agent_pos[1]][self.agent_pos[0]] = '☺'
+        board[self.a_pos[1]][self.a_pos[0]] = 'A'
+        board[self.b_pos[1]][self.b_pos[0]] = 'B'
+        board[self.c_pos[1]][self.c_pos[0]] = 'C'
+        return board
 
 class Node:
-    def __init__(self, state: BoardState, cost: int, depth: int, action: Action, parent: Node = None):
+    def __init__(self, state: BoardState, cost: int, depth: int, action: Action, parent = None):
         self.parent = parent
         self.state = state
         self.cost = cost
