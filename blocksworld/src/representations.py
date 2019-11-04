@@ -1,10 +1,11 @@
 from enum import Enum
 
 class Action(Enum):
-    Left  = (-1, 0)
-    Right = (1, 0)
-    Up    = (0, -1)
-    Down  = (0, 1)
+    Left    = (-1, 0)
+    Right   = (1, 0)
+    Up      = (0, -1)
+    Down    = (0, 1)
+    Unknown = (0, 0)
 
 class BoardState:
     def __init__(self, agent_pos_xy, a_pos_xy, b_pos_xy, c_pos_xy, board_size):
@@ -55,18 +56,27 @@ class Node:
         self.depth = depth
         self.action = action
 
-class Fringe:
-    def __init__(self, evaluator = None, nodes: list = []):
-        self.evaluator = self.nodes = nodes
+class Fringe():
+    def __init__(self):
+        self.nodes = []
 
-    def add(self, node):
-        if(self.evaluator == None):
-            self.nodes.insert(0, node)
+    def add(self, nodes):
+        for n in nodes:
+            self.nodes.append(n)
 
-class SuccessorFunction:
+    def is_empty(self):
+        return len(self.nodes) == 0
 
-    available_actions = [Action.Right, Action.Left, Action.Up, Action.Down]
+    def remove_front(self):
+        front = self.nodes[0]
+        self.nodes = self.nodes[1:]
+        return front
 
-    # def get_successors(node):
-    #     for a in available_actions:
+class ReverseFringe(Fringe):
+    def add(self, nodes):
+        for n in nodes:
+            self.nodes.insert(0, n)
 
+class Solution:
+    def __init__(self, node):
+        self.node = node
