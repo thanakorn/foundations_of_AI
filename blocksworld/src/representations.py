@@ -55,6 +55,9 @@ class Node:
         self.cost = cost
         self.depth = depth
         self.action = action
+    
+    def compare(self, n):
+        return self.state.compare(n.state) and self.cost == n.cost and self.depth == n.depth and self.action == n.action
 
 class Fringe():
     def __init__(self):
@@ -76,6 +79,11 @@ class ReverseFringe(Fringe):
     def add(self, nodes):
         for n in nodes:
             self.nodes.insert(0, n)
+
+class CostOrderedFringe(Fringe):
+    def add(self, nodes):
+        new_nodes = self.nodes + nodes
+        self.nodes = sorted(new_nodes, key = lambda n: n.cost)
 
 class Solution:
     def __init__(self, node):
