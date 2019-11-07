@@ -49,7 +49,7 @@ class FringeTest(unittest.TestCase):
         self.assertTrue(f.remove_front().state.compare(board_2))
         self.assertTrue(f.remove_front().state.compare(board_1))
 
-    def test_cost_ordered_fring(self):
+    def test_cost_ordered_fringe(self):
         f = CostOrderedFringe()
         board = BoardState( (1,1), (0,0), (2,2), (2,1), (3,3))
         node = Node(board, 0, 0, Action.Unknown)
