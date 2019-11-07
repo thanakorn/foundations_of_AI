@@ -1,4 +1,5 @@
 from enum import Enum
+from queue import Queue, LifoQueue, PriorityQueue
 
 class Action(Enum):
     Left    = (-1, 0)
@@ -59,31 +60,30 @@ class Node:
     def compare(self, n):
         return self.state.compare(n.state) and self.cost == n.cost and self.depth == n.depth and self.action == n.action
 
+    def __lt__(self, other):
+        return self.cost < other.cost
+
 class Fringe():
     def __init__(self):
-        self.nodes = []
+        self.nodes = Queue()
 
     def add(self, nodes):
         for n in nodes:
-            self.nodes.append(n)
+            self.nodes.put(n)
 
     def is_empty(self):
-        return len(self.nodes) == 0
+        return self.nodes.empty()
 
     def remove_front(self):
-        front = self.nodes[0]
-        self.nodes = self.nodes[1:]
-        return front
+        return self.nodes.get()
 
 class ReverseFringe(Fringe):
-    def add(self, nodes):
-        for n in nodes:
-            self.nodes.insert(0, n)
+    def __init__(self):
+            self.nodes = LifoQueue()
 
 class CostOrderedFringe(Fringe):
-    def add(self, nodes):
-        new_nodes = self.nodes + nodes
-        self.nodes = sorted(new_nodes, key = lambda n: n.cost)
+    def __init__(self):
+            self.nodes = PriorityQueue()
 
 class Solution:
     def __init__(self, node):
