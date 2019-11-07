@@ -2,7 +2,7 @@ import unittest
 import sys 
 sys.path.append('/home/tpanyapiang/git/MSc/foundations_of_AI/blocksworld/src')
 
-from representations import BoardState, Action
+from Representations import BoardState, Action
 
 class BoardStateTest(unittest.TestCase):
     def test_constructor(self):

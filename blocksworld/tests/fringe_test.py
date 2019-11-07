@@ -2,7 +2,7 @@ import unittest
 import sys 
 sys.path.append('/home/tpanyapiang/git/MSc/foundations_of_AI/blocksworld/src')
 
-from representations import Fringe, ReverseFringe, CostOrderedFringe, Node, BoardState, Action
+from Representations import Fringe, ReverseFringe, CostOrderedFringe, Node, BoardState, Action
 
 class FringeTest(unittest.TestCase):
     def test_is_empty(self):
