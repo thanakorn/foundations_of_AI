@@ -87,4 +87,15 @@ class CostOrderedFringe(Fringe):
 
 class Solution:
     def __init__(self, node):
-        self.solutions = []
+        self.actions = trace_node(node)
+        self.total_cost = node.cost
+
+    def trace_node(self, node):
+        actions = []
+        current_node = node
+        while(current_node.parent != None):
+            actions.insert(0, current_node.action)
+        return actions
+
+    def get_actions(self):
+        return self.actions
