@@ -4,10 +4,9 @@ class AbstractTreeSearch:
 
     ALL_ACTIONS = [Action.Left, Action.Right, Action.Up, Action.Down]
 
-    def __init__(self, start_state, goal_state, strategy, fringe = Fringe()):
+    def __init__(self, start_state, goal_state, fringe = Fringe()):
         self.start_state = BoardState(start_state)
         self.goal_state = BoardState(goal_state)
-        self.strategy = strategy
         self.fringe = fringe
 
     def goal_test(self, node):
