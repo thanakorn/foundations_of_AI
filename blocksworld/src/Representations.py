@@ -41,13 +41,17 @@ class BoardState:
         return self.agent_pos == s.agent_pos and self.a_pos == s.a_pos and self.b_pos == s.b_pos and self.c_pos == s.c_pos and self.board_size == s.board_size
 
     def show(self):
+        output = '\n'
         height, width = self.board_size
-        board = [['-' for i in range(width)] for j in range(height)]
-        board[self.agent_pos[1]][self.agent_pos[0]] = '☺'
-        board[self.a_pos[1]][self.a_pos[0]] = 'A'
-        board[self.b_pos[1]][self.b_pos[0]] = 'B'
-        board[self.c_pos[1]][self.c_pos[0]] = 'C'
-        return board
+        for i in range(height):
+            for j in range(width):
+                if (i,j) == self.a_pos: output += 'A '
+                elif (i,j) == self.b_pos: output += 'B '
+                elif (i,j) == self.c_pos: output += 'C '
+                elif (i,j) == self.agent_pos: output += '☺ '
+                else : output += '- '
+            output += '\n'
+        return output
 
 class Node:
     def __init__(self, state: BoardState, cost: int, depth: int, action: Action, parent = None):
