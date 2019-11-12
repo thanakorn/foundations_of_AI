@@ -12,7 +12,7 @@ class SolutionTest(unittest.TestCase):
         node_3 = Node(board, 0, 0, Action.Down, node_2)
         node_4 = Node(board, 0, 0, Action.Down, node_3)
         solution = Solution(node_4)
-        self.assertEqual(solution.get_actions(), [Action.Right, Action.Down, Action.Down])
+        self.assertEqual(solution.get_actions(), ['Right', 'Down', 'Down'])
 
     def test_total_cost(self):
         board = BoardState( (1,1), (0,0), (2,2), (2,1), (3,3))

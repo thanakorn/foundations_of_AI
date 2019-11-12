@@ -98,7 +98,7 @@ class Solution:
         actions = []
         current_node = node
         while(current_node.parent is not None):
-            actions.insert(0, current_node.action)
+            actions.insert(0, current_node.action.name)
             current_node = current_node.parent
         return actions
 
