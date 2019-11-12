@@ -7,4 +7,4 @@ class BreadthFirstSearch(AbstractTreeSearch):
 
 class DepthFirstSearch(AbstractTreeSearch):
     def __init__(self, start_state, goal_state):
-        super.__init__(start_state, goal_state, strategy, ReverseFringe())
+        super.__init__(start_state, goal_state, ReverseFringe())

@@ -37,7 +37,7 @@ class BoardState:
         
         return BoardState(agent_new_pos, new_a_pos, new_b_pos, new_c_pos, self.board_size)
 
-    def compare(self, s) -> bool:
+    def __eq__(self, s)-> bool:
         return self.agent_pos == s.agent_pos and self.a_pos == s.a_pos and self.b_pos == s.b_pos and self.c_pos == s.c_pos and self.board_size == s.board_size
 
     def show(self):
@@ -57,8 +57,8 @@ class Node:
         self.depth = depth
         self.action = action
     
-    def compare(self, n):
-        return self.state.compare(n.state) and self.cost == n.cost and self.depth == n.depth and self.action == n.action
+    def __eq__(self, other):
+        return self.state == other.state and self.cost == other.cost and self.depth == other.depth and self.action == other.action
 
     def __lt__(self, other):
         return self.cost < other.cost
@@ -87,15 +87,19 @@ class CostOrderedFringe(Fringe):
 
 class Solution:
     def __init__(self, node):
-        self.actions = trace_node(node)
+        self.node = node
         self.total_cost = node.cost
 
     def trace_node(self, node):
         actions = []
         current_node = node
-        while(current_node.parent != None):
+        while(current_node.parent is not None):
             actions.insert(0, current_node.action)
+            current_node = current_node.parent
         return actions
 
     def get_actions(self):
-        return self.actions
+        return self.trace_node(self.node)
+
+    def get_total_cost(self):
+        return self.node.cost

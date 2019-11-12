@@ -97,12 +97,12 @@ class BoardStateTest(unittest.TestCase):
         board_5 = BoardState((1,1), (0,0), (2,1), (2,0), (3,3)) # B position mismatch
         board_6 = BoardState((1,1), (0,0), (2,2), (1,0), (3,3)) # C position mismatch
         board_7 = BoardState((1,1), (0,0), (2,2), (2,0), (4,4)) # Different board size
-        self.assertTrue(board_1.compare(board_2))
-        self.assertFalse(board_1.compare(board_3))
-        self.assertFalse(board_1.compare(board_4))
-        self.assertFalse(board_1.compare(board_5))
-        self.assertFalse(board_1.compare(board_6))
-        self.assertFalse(board_1.compare(board_7))
+        self.assertTrue(board_1 == board_2)
+        self.assertFalse(board_1 == board_3)
+        self.assertFalse(board_1 == board_4)
+        self.assertFalse(board_1 == board_5)
+        self.assertFalse(board_1 == board_6)
+        self.assertFalse(board_1 == board_7)
 
     def test_show(self):
         board_1 = BoardState((1,1), (0,0), (2,2), (2,0), (3,3))
