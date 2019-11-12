@@ -1,4 +1,5 @@
 from Representations import BoardState, Node, Fringe, Solution, Action
+import time
 
 class AbstractTreeSearch:
 
@@ -13,19 +14,19 @@ class AbstractTreeSearch:
         return self.goal_state == node.state
 
     def search(self):
-        self.fringe.insert(Node(
+        self.fringe.add([Node(
             state = self.start_state,
             cost = 0,
             depth = 0,
             action = None,
             parent = None
-        ))
+        )])
         while True:
             if self.fringe.is_empty(): return None
             node = self.fringe.remove_front()
             if self.goal_test(node): 
                 return Solution(node)
-            successors = expand(node)
+            successors = self.expand(node)
             self.fringe.add(successors)
 
     def expand(self, node):
