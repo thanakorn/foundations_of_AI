@@ -45,10 +45,10 @@ class BoardState:
         height, width = self.board_size
         for i in range(height):
             for j in range(width):
-                if (i,j) == self.a_pos: output += 'A '
-                elif (i,j) == self.b_pos: output += 'B '
-                elif (i,j) == self.c_pos: output += 'C '
-                elif (i,j) == self.agent_pos: output += '☺ '
+                if (j,i) == self.a_pos: output += 'A '
+                elif (j,i) == self.b_pos: output += 'B '
+                elif (j,i) == self.c_pos: output += 'C '
+                elif (j,i) == self.agent_pos: output += '☺ '
                 else : output += '- '
             output += '\n'
         return output
