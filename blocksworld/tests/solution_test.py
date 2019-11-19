@@ -6,7 +6,7 @@ from Representations import BoardState, Node, Solution, Action
 
 class SolutionTest(unittest.TestCase):
     def test_find_solution(self):
-        board = BoardState( (1,1), (0,0), (2,2), (2,1), (3,3))
+        board = BoardState( (1,1), {'A':(0,0), 'B':(2,2), 'C':(2,1)}, (3,3))
         node_1 = Node(board, 0, 0, Action.Unknown)
         node_2 = Node(board, 0, 0, Action.Right, node_1)
         node_3 = Node(board, 0, 0, Action.Down, node_2)
@@ -15,7 +15,7 @@ class SolutionTest(unittest.TestCase):
         self.assertEqual(solution.get_actions(), ['Right', 'Down', 'Down'])
 
     def test_total_cost(self):
-        board = BoardState( (1,1), (0,0), (2,2), (2,1), (3,3))
+        board = BoardState( (1,1), {'A':(0,0), 'B':(2,2), 'C':(2,1)}, (3,3))
         node_1 = Node(board, 10, 0, Action.Unknown)
         node_2 = Node(board, 15, 0, Action.Right, node_1)
         node_3 = Node(board, 30, 0, Action.Down, node_2)

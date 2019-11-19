@@ -1,5 +1,6 @@
 from enum import Enum
 from queue import Queue, LifoQueue, PriorityQueue
+import copy
 
 class Action(Enum):
     Left    = (-1, 0)
@@ -9,11 +10,9 @@ class Action(Enum):
     Unknown = (0, 0)
 
 class BoardState:
-    def __init__(self, agent_pos_xy, a_pos_xy, b_pos_xy, c_pos_xy, board_size):
+    def __init__(self, agent_pos_xy, tiles_pos, board_size):
         self.agent_pos = agent_pos_xy
-        self.a_pos = a_pos_xy
-        self.b_pos = b_pos_xy
-        self.c_pos = c_pos_xy
+        self.tiles_pos = tiles_pos
         self.board_size = board_size
 
     def move(self, action):
@@ -24,30 +23,31 @@ class BoardState:
         # If the move is invalid return None
         if(agent_new_pos[0] < 0 or agent_new_pos[0] == self.board_size[0] or agent_new_pos[1] < 0 or agent_new_pos[1] == self.board_size[1]):
             return None
+
+        new_tile_pos = copy.deepcopy(self.tiles_pos)
+        for tile, pos in self.tiles_pos.items():
+            if pos == agent_new_pos:
+                new_tile_pos[tile] = self.agent_pos
         
-        new_a_pos = self.a_pos
-        new_b_pos = self.b_pos
-        new_c_pos = self.c_pos
-        if(self.a_pos == agent_new_pos):
-            new_a_pos = self.agent_pos
-        elif(self.b_pos == agent_new_pos):
-            new_b_pos = self.agent_pos
-        elif(self.c_pos == agent_new_pos):
-            new_c_pos = self.agent_pos
-        
-        return BoardState(agent_new_pos, new_a_pos, new_b_pos, new_c_pos, self.board_size)
+        return BoardState(agent_new_pos, new_tile_pos, self.board_size)
+
+    def get_tile_pos(self, tile):
+        return self.tiles_pos[tile]
 
     def __eq__(self, s)-> bool:
-        return self.agent_pos == s.agent_pos and self.a_pos == s.a_pos and self.b_pos == s.b_pos and self.c_pos == s.c_pos and self.board_size == s.board_size
+        for tile, pos in self.tiles_pos.items():
+            if pos != s.get_tile_pos(tile):
+                return False
+        return self.agent_pos == s.agent_pos and self.board_size == s.board_size
 
     def show(self):
         output = '\n'
         height, width = self.board_size
         for i in range(height):
             for j in range(width):
-                if (j,i) == self.a_pos: output += 'A '
-                elif (j,i) == self.b_pos: output += 'B '
-                elif (j,i) == self.c_pos: output += 'C '
+                if (j,i) == self.get_tile_pos('A'): output += 'A '
+                elif (j,i) == self.get_tile_pos('B'): output += 'B '
+                elif (j,i) == self.get_tile_pos('C'): output += 'C '
                 elif (j,i) == self.agent_pos: output += '☺ '
                 else : output += '- '
             output += '\n'

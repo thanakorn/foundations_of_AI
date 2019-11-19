@@ -1,14 +1,19 @@
 import unittest
-import sys 
+import sys
+import signal
+import time
+import timeout_decorator
 sys.path.append('/home/tpanyapiang/git/MSc/foundations_of_AI/blocksworld/src')
 
 from Representations import Fringe, ReverseFringe, CostOrderedFringe, Node, BoardState, Action
 from UninformedSearch import DepthFirstSearch
 
-class BFSTest(unittest.TestCase):
-    def test_bfs(self):
-        start = BoardState((2, 1), (0,2), (1,2), (2,2), (3,3))
-        goal = BoardState((0, 0), (0,2), (1,2), (2,2), (3,3))
+class DFSTest(unittest.TestCase):
+
+    @timeout_decorator.timeout(2)
+    def test_dfs(self):
+        start = BoardState((2, 1), {'A': (0,2), 'B': (1,2), 'C': (2,2)}, (3,3))
+        goal = BoardState((0, 0), {'A' : (0,2), 'B': (1,2), 'C': (2,2)}, (3,3))
         dfs = DepthFirstSearch(start, goal)
         solution = dfs.search()
         print(solution.get_actions())
