@@ -27,7 +27,7 @@ class BoardState:
         new_tile_pos = copy.deepcopy(self.tiles_pos)
         for tile, pos in self.tiles_pos.items():
             if pos == agent_new_pos:
-                new_tile_pos[tile] = self.agent_pos
+                new_tile_pos[tile] = copy.deepcopy(self.agent_pos)
         
         return BoardState(agent_new_pos, new_tile_pos, self.board_size)
 
