@@ -10,7 +10,7 @@ class DepthFirstSearch(AbstractTreeSearch):
         super().__init__(start_state, goal_state, ReverseFringe())
 
 class IterativeDeepeningSearch(AbstractTreeSearch):
-    DEFAULT_DEPTH_LIMIT = 2
+    DEFAULT_DEPTH_LIMIT = 1
 
     def __init__(self, start_state, goal_state, depth = DEFAULT_DEPTH_LIMIT):
         self.depth_limit = IterativeDeepeningSearch.DEFAULT_DEPTH_LIMIT
