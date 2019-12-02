@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{COMP6231 : Reading Summary}
+\author{Thanakorn Panyapiang(31446612)}
+\date{}
+\begin{document}
+
+\maketitle
+\section*{In what ways has the focus of artificial intelligence research changed since its inception and why?}
+
+In early days, AI researchers believed that solving domain-specific problems will lead to the development of general AI. This belief directed the early works in AI research to center around using symbolic representations and symbol manipulations to solve issues namely mobile robot control, computer vision, and game playing. The approach of studies during this period(f.e. the Stanford Cart and Samuel's Checkers-Playing Program) usually consist of transforming the world in which the agent operated into a simpler form that can be represented by symbols and use the computational power of machines to run algorithms such as tree-search to find the best solution.
+
+One crucial limitation of the symbolic AI approach that is the lack of common sense knowledge which researchers believe is an important part of intelligence. There was an attempt to overcome this problem which is the CYC project. CYC aimed to produce a knowledge base which contains common sense knowledge of human being with the expectation that it will be a foundation of future expert systems.
+
+Later on, there was a new approach emerge in AI research called \textit{"connectionist AI"}. Unlike the conventional approach which put an emphasis on modelling and reasoning the world, the connectionist approach is based on the idea that intelligence is composed of many small units that are responsible for simple behaviors and work together to obtain more complex functionalities. It uses the power of network and parallel computing to solve problems with very minimal knowledge representation and reasoning.
+
+\clearpage
+\section*{Reading Assignment 1 : The Turing Test}
+Although the Turing Test proposes a systematic way to find the answer to the question, "Can machines think?", the proposed method still depends significantly on the intellectual ability of an interrogator which is subjective. For instance, a smart interrogator could detect a small grammatical error of one player's answer which helps him to determine that this player is not a human whereas another interrogator may not be able to notice. In this example, two interrogators will give a different answer which causes the result of the Turing Test to be inconsistent. What is the conclusion in this circumstance? Can this machine think?
+
+Another point that's worth discussing is Turing proposed answering questions as a way to illustrate the ability to think. Is this a suitable evaluation? Human brains think all the time even when they are not answering questions, how Turing Test going to explain other kinds of thought like instinct. Is there any other method to show thinking ability? Moreover, the conversation-based test that Turing proposed has a limitation that both interrogator and players must have some knowledge in common(language, for example) otherwise the result is nonsense.
+
+\section*{Reading Assignment 2 : The Chinese Room Argument}
+The Chinese room experiment opposes the idea of the strong AI by focusing on the way a machine finds the result instead of the output it produces(which is proposed in the Turing test).  Searle states that what the man in the room does is only a symbol processing and cannot compare with human thinking.
+
+One observation I have on this argument is that although the person in the room only processes symbols, manipulating symbols is also a part of the thought process of a native Chinese speaker he converses with. When the native speaker gets the answer, he has to correlate a sequence of characters to words he knows and interprets the structure of the sentence based on the language syntax before he can understand the true meaning of the text. In this context, the vocabulary knowledge and the grammatical rules are the program of the native speaker. 
+
+What different between the native Chinese speaker and the man in the room is the native speaker has other programs working on reasoning and analyzing after the first program finish. By combining several programs together, it helps the native speaker to understand the story better.
+
+\clearpage
+
+\section*{Reading Assignment 3 : Vehicle Robots}
+Apart from describing the works on the Stanford Cart and the CMU Rover,
+another interesting topic the paper mentions is general artificial intelligence. The author believes that incrementally solving control and perception challenges of developing a mobile autonomous machine is the most certain way to succeed in developing general AI. He believes it can be compared with the evolution of animals that have adopted a mobile way of life which slowly developed their competence over a long period of time.
+
+The analogy the author makes quite interesting and, with careful consideration, there are several things in common between animals and machine evolutions than it first appears. For example, the CMU Rover uses an omnidirectional wheel which is a newer technology so the robot has more flexibility in movement. This is similar to octopus developed their dexterous manipulators for catching their prey.
+
+However, there is a big difference in the cause of evolution that the author didn’t indicate. Evolution in animals occurs because of necessity in surviving while evolution in machines is created by humans. As the cause of evolution is different, the result of evolution over a long period of time could be different.
+
+\section*{Reading Assignment 4 : Studies in Machine Learning Using Checkers}
+The paper uses a game of checkers to study two learning techniques: rote
+learning and learning by generalization. The author trains the machine to play a checker using two learning methods and observes the characteristics of each. In addition, he also proposes approaches to combine the strengths of both techniques together.
+
+What I found interesting from the paper is the idea of ply value. The ply
+is the value used to limit the number of next moves that the machine will
+consider while playing a game which is equivalent to the depth of the tree which the machine will explore. The interesting feature of the ply is it is not static and will be calculated based on the situation of the game at that particular moment. In some aspects, the ply limitation is similar to an evaluation function of heuristic search but it is an evaluation function for depth-level instead of a node of the tree. However, the purposes of the ply and evaluation function are quite different. While an evaluation function is designed specificly to help finding the target state, the goal of the ply limitation is to reduce the computational time.
+\clearpage
+
+\section*{Reading Assignment 5 : CYC}
+
+The goal of the CYC project is to teach computer a common sense knowledge as it plays a key role in communication and understanding. The founder of the project believes that before any artificial intelligence system cannot be entrusted to handle critical tasks until it manage to acquire this knowledge. 
+
+Although there is no argument about the importance of common sense, identifying what is common sense is subjective and the article does not clarify how the CYC team deals with it.There is no universal common knowledge that has been widely accepted as well as there are no two human beings who have the same thoughts. Our common sense is developed by the environment that we grew up with, the people that we were surrounded, and the things that we value. Things that are common for one person may not be so common for another and vice versa. Let's take one example in the article to illustrate. One application of CYC that the author gives in the article is detecting common-sense errors in the data. For example, if a person fill the gender of his spouse similar to himself in the spreadsheet, the program can correct the information automatically. However, this common-sense is less valid nowadays because there are many people do not care about gender when they get married. The knowledge about gender and marriage has become a personal preference rather than common sense.
+
+\section*{Reading Assignment 6 : Society of Mind}
+
+The Society of Mind theory proposes the idea that mind is a society of agents where each agent is specialized in a specific domain. However, none of an individual agent is capable of solving even the simplest common-sense problem by itself. The ability to solve issues comes from a community of agents collaborate with each other.
+
+The theory looks plausible in several contexts especially in nature as the number of cells in the organism is directly proportionate with its abilities. For instance, a unicellular organism, namely bacteria and yeast, has a limited ability that only is necessary for surviving, while a multicellular organism such as plants, animals, and humans, which are composed of hundreds of millions of cells, are able to do more complicated tasks like communicating, adjusting to new environment, and learning new things. Moreover, from biological knowledge, it has been found that cells in multicellular organisms communicate using hormones and chemicals to send signals to each other. This is similar to the idea of K-lines and connection lines which Minsky mentioned in his book.
+\clearpage
+
+\section*{Reading Assignment 7 : Intelligence Without Reason}
+
+Brooks proposed the new way of developing artificial intelligence system called behaviour-based artificial intelligence. Unlike the traditional approach where there is a single unit that possesses all data and solves problems for the whole system, the new approach is based on the principles that intelligence is composed of layers of independent but connected computational units where each unit can have a perceptual component and solve self-related problems. Sophisticated functionalities can be obtained by combining several components that have specific behavior together.
+
+In my perspective, the theory fits really well in many domains especially those regarding multi-channel input and output. However, it fails to explain intellectual capabilities such as understanding, language, and reasoning. These abilities have only a few input and output channels but the underlying computation is sophisticated which looks more suitable with the old artificial intelligence approach.
+
+\section*{Reading Assignment 8 : The Architecture of Mind: A Connectionist Approach}
+
+"The Architecture of Mind: A Connectionist Approach" proposes the theory that the mind is connections of small processing units communicates by passing numbers to each other along the connection lines which link them together.
+
+The strength that the connectionist approach has over the classical artificial intelligence approach, in my opinion, is the utilization of parallelism. The conventional AI puts the emphasis on symbolic reasoning and processing. The big issue of this view is it requires the computational unit to be remarkable fast (since it has to deal with many problems at a time) which is biologically impossible based on studies about the human brain.
+
+The parallel computation idea proposed by Rumelhart fits better with human intelligence. The human brain is not so fast on symbol manipulations such as performing arithmetic operations. However, it is capable of controlling many organisms in the body simultaneously and efficiently. These capabilities are very challenging for powerful machines. For instance, to build a humanoid robot that can walk smoothly, it requires high-perfomance computers and microprocessors. Since the brain works very slow compared to a computer, the only possible explanation remains for these capabilities is it has an astonishing parallel computing mechanism.
+
+\end{document}
